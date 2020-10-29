@@ -13,9 +13,9 @@
 | first_name_kana        |  string  | null: false |
 |   birth_date           |   date   | null: false |
 
-
-
 ### Association
+* has_many :items
+* has_many :orders
 
 
 ## items テーブル
@@ -46,7 +46,7 @@
 ### Association
 
 * has_many :addresses
-* has_many :items
+* has_many :users
 
 
 ### addresses テーブル
