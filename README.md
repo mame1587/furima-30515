@@ -34,7 +34,7 @@
 
 
 ### Association
-* has_many :users
+- belongs_to :users
 
 ## orders テーブル
 
@@ -51,13 +51,13 @@
 ### addresses テーブル
 |  Column         |    Type   | Options          |
 |-----------------|-----------|------------------|
-|  post_code      |  string   |                  |
+|  post_code      |  string   | null: false      |
 |  building_name  |  string   |                  |
 |  phone_number   |  string   | null: false      |
-|  prefectures_id |  integer  | null: false      |
-|  city           |   text    | null: false      |
+|  prefectures_id |  string   | null: false      |
+|  city           |  string   | null: false      |
 |  purchase       | references| foreign_ker: true|
 
 
 ### Association
-* has_many :orders
+-belongs_to :orders
