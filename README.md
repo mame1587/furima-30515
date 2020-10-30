@@ -25,7 +25,6 @@
 |    user          | references | foreign_key: true |
 |    name          | string     |    null: false    |
 |  description     |    text    |    null: false    |
-|   images_id      |  integer   |    null: false    |
 |  category_id     |  integer   |    null: false    |
 | condition_id     |  integer   |    null: false    |
 | postage_payer_id |  integer   |    null: false    |
@@ -47,6 +46,7 @@
 
 * has_many :addresses
 * has_many :users
+* has_many :items
 
 
 ### addresses テーブル
