@@ -14,6 +14,7 @@
 |   birth_date           |   date   | null: false |
 
 ### Association
+
 * has_many :items
 * has_many :orders
 
@@ -44,6 +45,7 @@
 |  user   | references  | foreign_key: true            |
 
 ### Association
+* has_one :addresses
 - belongs_to :user
 - belongs_to :item
 
@@ -52,7 +54,7 @@
 |  Column         |    Type   | Options          |
 |-----------------|-----------|------------------|
 |  post_code      |  string   | null: false      |
-|  building_name  |  string   |                  |
+|  building_name  |  string   | null: false      |
 |  phone_number   |  string   | null: false      |
 |  house_number   |  string   |                  |
 |  prefectures_id |  integer  | null: false      |
