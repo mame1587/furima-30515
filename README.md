@@ -14,7 +14,7 @@
 |   birth_date           |   date   | null: false |
 
 ### Association
-* has_many :items
+- belongs_to :items
 - belongs_to :orders
 
 
@@ -44,7 +44,7 @@
 |  user   | references  | foreign_key: true            |
 
 ### Association
-* has_many :users
+* has_one :users
 - belongs_to :items
 
 
@@ -54,10 +54,10 @@
 |  post_code      |  string   | null: false      |
 |  building_name  |  string   |                  |
 |  phone_number   |  string   | null: false      |
-|  prefectures_id |  string   | null: false      |
-|  city           |  string   | null: false      |
+|  prefectures_id |  integer  | null: false      |
+|  city           |  integer  | null: false      |
 |  purchase       | references| foreign_ker: true|
 
 
 ### Association
--belongs_to :orders
+-belongs_to :order
