@@ -7,15 +7,15 @@
 |   email                |  string  | null: false |
 |   excerpted_password   |  string  | null: false |
 |   nickname             |  string  | null: false |
-|   lust_name            |  string  | null: false |
+|   last_name            |  string  | null: false |
 |  first_name            |  string  | null: false |
-| lust_name_kana         |  string  | null: false |
+| last_name_kana         |  string  | null: false |
 | first_name_kana        |  string  | null: false |
 |   birth_date           |   date   | null: false |
 
 ### Association
-- belongs_to :items
-- belongs_to :orders
+* has_many :items
+* has_many :orders
 
 
 ## items テーブル
@@ -27,14 +27,14 @@
 |  description     |    text    |    null: false    |
 |  category_id     |  integer   |    null: false    |
 | condition_id     |  integer   |    null: false    |
-| postage_payer_id | references | foreign_key: true |
-| prefecture_id    | references | foreign_key: true |
-|  handling_id     | references | foreign_key: true |
-|   price          | references | foreign_key: true |
+| postage_payer_id |  integer   |    null: false    |
+| prefecture_id    |  integer   |    null: false    |
+|  handling_id     |  integer   |    null: false    |
+|   price          |  integer   |    null: false    |
 
 
 ### Association
-- belongs_to :users
+- belongs_to :user
 
 ## orders テーブル
 
@@ -44,8 +44,8 @@
 |  user   | references  | foreign_key: true            |
 
 ### Association
-* has_one :users
-- belongs_to :items
+- belongs_to :user
+- belongs_to :item
 
 
 ### addresses テーブル
@@ -54,9 +54,10 @@
 |  post_code      |  string   | null: false      |
 |  building_name  |  string   |                  |
 |  phone_number   |  string   | null: false      |
+|  house_number   |  string   |                  |
 |  prefectures_id |  integer  | null: false      |
-|  city           |  integer  | null: false      |
-|  purchase       | references| foreign_ker: true|
+|  city           |  string   | null: false      |
+|  order          | references| foreign_ker: true|
 
 
 ### Association
