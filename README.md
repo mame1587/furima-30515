@@ -27,10 +27,10 @@
 |  description     |    text    |    null: false    |
 |  category_id     |  integer   |    null: false    |
 | condition_id     |  integer   |    null: false    |
-| postage_payer_id |  integer   |    null: false    |
-| prefecture_id    |  integer   |    null: false    |
-|  handling_id     |  integer   |    null: false    |
-|   price          |  integer   |    null: false    |
+| postage_payer_id | references | foreign_key: true |
+| prefecture_id    | references | foreign_key: true |
+|  handling_id     | references | foreign_key: true |
+|   price          | references | foreign_key: true |
 
 
 ### Association
@@ -51,8 +51,8 @@
 ### addresses テーブル
 |  Column         |    Type   | Options          |
 |-----------------|-----------|------------------|
-|  post_code      |  string   | null: false      |
-|  building_name  |  string   | null: false      |
+|  post_code      |  string   |                  |
+|  building_name  |  string   |                  |
 |  phone_number   |  string   | null: false      |
 |  prefectures_id |  integer  | null: false      |
 |  city           |   text    | null: false      |
@@ -60,4 +60,4 @@
 
 
 ### Association
-- belongs_to :orders
+* has_many :orders
