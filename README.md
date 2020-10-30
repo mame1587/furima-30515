@@ -21,7 +21,7 @@
 ## items テーブル
 
 |   Column         |   Type     |   Options         |
-|---------------|------------|-------------------|
+|------------------|------------|-------------------|
 |    user          | references | foreign_key: true |
 |    name          | string     |    null: false    |
 |  description     |    text    |    null: false    |
@@ -34,6 +34,7 @@
 
 
 ### Association
+* has_many :users
 
 ## orders テーブル
 
@@ -43,8 +44,6 @@
 |  user   | references  | foreign_key: true            |
 
 ### Association
-
-* has_many :addresses
 * has_many :users
 * has_many :items
 
