@@ -15,7 +15,7 @@
 
 ### Association
 * has_many :items
-* has_many :orders
+- belongs_to :orders
 
 
 ## items テーブル
@@ -45,7 +45,7 @@
 
 ### Association
 * has_many :users
-* has_many :items
+- belongs_to :items
 
 
 ### addresses テーブル
