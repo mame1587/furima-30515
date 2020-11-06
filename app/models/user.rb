@@ -4,16 +4,16 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
          
-        VALID_PASSSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?[A-Z])(?=.*?[\d])\w{6,12}\z/
         VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i 
 
          validates :email, presence: true, length: { maximum: 255},
                                            format: {with: VALID_EMAIL_REGEX },
                                            uniqueness: { case_sensitive: false }
-         validates :password, presence: true, length: { minimum: 7 },
-                                              format: User::VALID_PASSSWORD_REGEX,
-                                              allow_blank: true
-         validates :nickname, presence: true
+         with_options presence: true do
+         PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i.freeze
+         validates_format_of :password, with: PASSWORD_REGEX, message: 'には英字と数字の両方を含めて設定してください'
+         validates :nickname
+         end
          with_options presence: true, format: {with: /\A[ぁ-んァ-ンー-龥]/ } do
          validates :last_name
          validates :first_name

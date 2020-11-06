@@ -37,24 +37,36 @@ RSpec.describe User, type: :model do
       @user.password = "123456"
       @user.password_confirmation = "123456"
       @user.valid?
-      expect(@user.errors[:password]).to include("is too short (minimum is 7 characters)")
+      expect(@user.errors[:password]).to include("には英字と数字の両方を含めて設定してください")
       end
   it "passwordが数字のみの場合は登録できないこと" do
       @user.password = "1234567"
       @user.password_confirmation = "1234567" 
       @user.valid?
-      expect(@user.errors[:password]).to include("is invalid")
+      expect(@user.errors[:password]).to include("には英字と数字の両方を含めて設定してください")
       end
-  it "encrypted_passwordがない場合は登録できないこと" do
-      @user.encrypted_password = nil
+  it "passwordが英字のみの場合は登録できないこと" do
+      @user.password = "abcdefg"
+      @user.password_confirmation = "abcdefg"
       @user.valid?
-      expect(@user.errors[:encrypted_password]).to include("can't be blank")
+      expect(@user.errors[:password]).to include("には英字と数字の両方を含めて設定してください")
+      end
+  it "passwordが全角のみの場合は登録できないこと" do
+      @user.password = "ABCDEFG"
+      @user.password_confirmation = "ABCDEFG"
+      @user.valid?
+      expect(@user.errors[:password]).to include
+      end
+  it "password_confirmationがない場合は登録できないこと" do
+      @user.password_confirmation = ""
+      @user.valid?
+      expect(@user.errors[:password_confirmation]).to include("doesn't match Password")
       end
 # 確認パスワードが確認であるテスト▼
-  it "passwordが存在してもencrypted_passwordがない場合登録できないこと"do
-      @user.encrypted_password = ""
+  it "passwordが存在してもpassword_confirmationがない場合登録できないこと"do
+      @user.password_confirmation = ""
       @user.valid?
-      expect(@user.errors[:encrypted_password]).to include("can't be blank","is too short (minimum is 7 characters)")
+      expect(@user.errors[:password_confirmation]).to include("doesn't match Password")
       end
   it "first_nameがない場合は登録できないこと" do
       @user.first_name = nil
@@ -97,7 +109,7 @@ RSpec.describe User, type: :model do
      @user.save
      another_user = FactoryBot.build(:user, email: @user.email)
      another_user.valid?
-     expect(another_user.errors.full_messages).to include("Email has already been taken")
+     expect(another_user.errors[:email]).to include("has already been taken")
      end
   end
 end
