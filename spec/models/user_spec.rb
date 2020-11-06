@@ -10,27 +10,41 @@ RSpec.describe User, type: :model do
   it "全ての項目の入力が存在すれば登録できること" do
     expect(@user).to be_valid
   end 
-  it "passwordが6文字以上での入力が必須であること" do
-    @user.password = "000000"
-    @user.password_confirmation = "000000"
-    expect(@user).to be_valid
-  end
   it "emailがない場合は登録できないこと" do
       @user.email = nil
       @user.valid?
       expect(@user.errors[:email]).to include("can't be blank")
       end
   it "emailに@を含む必要があること" do
-      @user.email = ""
+      @user.email = "aaaaaa"
       @user.valid?
-      expect(@user.errors[:email]).to include("can't be blank")
+      expect(@user.errors[:email]).to include("is invalid")
       end
+# パスワードが英数字確認のテスト▼
   it "passwordがない場合は登録できないこと" do
       @user.password = nil
       @user.valid?
       expect(@user.errors[:password]).to include("can't be blank")
       end
-  
+  it "passwordが7文字以上での入力が必須であること" do
+      password = Faker::Internet.password(min_length: 7, max_length: 7)
+      @user.password = password
+      @user.password_confirmation = password
+      @user.valid?
+      expect(@user).to be_valid
+      end
+  it "passwordが6文字以下であれば登録できないこと" do
+      @user.password = "123456"
+      @user.password_confirmation = "123456"
+      @user.valid?
+      expect(@user.errors[:password]).to include("is too short (minimum is 7 characters)")
+      end
+  it "passwordが数字のみの場合は登録できないこと" do
+      @user.password = "1234567"
+      @user.password_confirmation = "1234567" 
+      @user.valid?
+      expect(@user.errors[:password]).to include("is invalid")
+      end
   it "encrypted_passwordがない場合は登録できないこと" do
       @user.encrypted_password = nil
       @user.valid?
