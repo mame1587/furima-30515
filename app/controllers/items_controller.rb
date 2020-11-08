@@ -1,7 +1,8 @@
 class ItemsController < ApplicationController
   
   def index
-    @items = Item.all
+    @item = Item.all
+    # @order = Oreder.find(params[:order_id])
   end
   
   def show
