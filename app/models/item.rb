@@ -13,4 +13,5 @@ validates :price, presence: true
 
 has_one :orders
 belongs_to :user
+has_one_attached :image
 end
