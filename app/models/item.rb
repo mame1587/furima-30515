@@ -1,4 +1,13 @@
 class Item < ApplicationRecord
+has_one :orders
+belongs_to :user
+has_one_attached :image
+
+validates :content, presence: true, unless: :was_attached?
+
+def was_attached?
+  self.image.attached?
+end
 
 validates :user, presence: true
 validates :name, presence: true
@@ -10,8 +19,4 @@ validates :prefecture_id, presence: true
 validates :handling_id, presence: true
 validates :price, presence: true
 
-
-has_one :orders
-belongs_to :user
-has_one_attached :image
 end
