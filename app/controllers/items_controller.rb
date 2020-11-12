@@ -4,13 +4,21 @@ class ItemsController < ApplicationController
     @item = Item.all
     # @order = Oreder.find(params[:order_id])
   end
-  
+
+  def new
+   @item = Item.new
+  end
+
   def show
     @item = Item.new
   end
 
   def create
-    Item.create(item_params)
+    # @order = Order.find(params[:order_id])
+    @item = Item.new(item_params)
+    @item.save
+    redirect_to root_path
+    # binding.pry
   end
 
   def edit
@@ -21,11 +29,11 @@ class ItemsController < ApplicationController
       redirect_to root_path
     else
       render :edit
+    end
   end
 
-private
+  private
   def item_params
-  params.require(:item).permit(:content, :image).merge(user_id: current_user.id)
+    params.require(:item).permit(:image, :name, :description, :category_id, :condition_id, :postage_payer_id, :prefecture_id, :handling_id, :price).merge(user_id: current_user.id)
   end
-end
 end

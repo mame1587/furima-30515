@@ -3,13 +3,10 @@ has_one :orders
 belongs_to :user
 has_one_attached :image
 
-validates :content, presence: true, unless: :was_attached?
-
 def was_attached?
   self.image.attached?
 end
 
-validates :user, presence: true
 validates :name, presence: true
 validates :description, presence: true
 validates :category_id, presence: true
