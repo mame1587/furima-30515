@@ -17,9 +17,12 @@ class ItemsController < ApplicationController
   def create
     # @order = Order.find(params[:order_id])
     @item = Item.new(item_params)
-    @item.save
+    if @item.save
     redirect_to root_path
+    else
+      render :new
     # binding.pry
+    end
   end
 
   def edit
