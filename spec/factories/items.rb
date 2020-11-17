@@ -8,7 +8,7 @@ FactoryBot.define do
     postage_payer_id {2}
     prefecture_id {2}
     handling_id {2}
-    price {"1000"}
+    price {1000}
     user
     
       after(:build) do |item|

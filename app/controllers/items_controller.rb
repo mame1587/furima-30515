@@ -3,38 +3,35 @@ class ItemsController < ApplicationController
 
   def index
     @item = Item.all
-    # @order = Oreder.find(params[:order_id])
   end
 
   def new
    @item = Item.new
   end
 
-  def show
-    @item = Item.new
-  end
+  # def show
+  #   @item = Item.new
+  # end
 
   def create
-    # @order = Order.find(params[:order_id])
     @item = Item.new(item_params)
     if @item.save
     redirect_to root_path
     else
       render :new
-    # binding.pry
     end
   end
 
-  def edit
-  end
+  # def edit
+  # end
   
-  def update
-    if current_user.update(item_params)
-      redirect_to root_path
-    else
-      render :edit
-    end
-  end
+  # def update
+  #   if current_user.update(item_params)
+  #     redirect_to root_path
+  #   else
+  #     render :edit
+  #   end
+  # end
 
   private
   def item_params

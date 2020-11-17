@@ -74,6 +74,16 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors[:price]).to include("is not included in the list")
         end
+        it "価格の範囲が上限以下では保存できないこと" do
+        @item.price = 9999999
+        @item.valid?
+        expect(@item.errors[:price]).to include()
+        end
+        it "価格の範囲が下限以下では保存できないこと" do
+        @item.price = 300
+        @item.valid?
+        expect(@item.errors[:price]).to include()
+        end
         it "カテゴリーが1では保存できないこと" do
         @item.category_id = 1
         @item.valid?
