@@ -31,3 +31,7 @@ yarn-debug.log*
 .yarn-integrity
 .Ds_Store
 /vandor/bundle
+.Ds_Store
+app/.Ds_Store
+public*
+
