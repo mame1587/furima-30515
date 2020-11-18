@@ -126,7 +126,7 @@
     <h2 class='title'>ピックアップカテゴリー</h2>
     <%= link_to '新規投稿商品', "#", class: "subtitle" %>
     <ul class='item-lists'>
-    <% if @items.present? %>
+    <% if @items.present? then %>
     <% @items.each do |item| %>
       <li class='list'>
         <%= link_to "#" do %>
@@ -141,10 +141,10 @@
         </div>
         <div class='item-info'>
           <h3 class='item-name'>
-            <%= "商品名" %>
+            <%= @items.where(:name) %>
           </h3>
           <div class='item-price'>
-            <span><%= "販売価格" %>円<br><%= '配送料負担' %></span>
+            <span><%= @item.where(:price) %>円<br><%= @item.where(:postage_payer_id) %></span>
             <div class='star-btn'>
               <%= image_tag "star.png", class:"star-icon" %>
               <span class='star-count'>0</span>
@@ -155,7 +155,7 @@
       <% end %>
       </li>
 
-      <% if @items.length %>
+      <% else %>
       <%# 商品がある場合は表示されないようにしましょう %>
       <li class='list'>
      <%= link_to '#' do %>
@@ -178,15 +178,14 @@
       <% end %>
       <%# //商品がある場合は表示されないようにしましょう %>
       <%# /商品がない場合のダミー %>
-    <% end %>
     </ul>
   </div>
   <%# /商品一覧 %>
 </div>
 <div class='purchase-btn'>
   <span class='purchase-btn-text'>出品する</span>
-  <a href="http://localhost:3000/items/new">
-    <%= image_tag 'camera.png' , size: '185x50' ,class: "purchase-btn-icon" %>
-  </a>
+  <%= link_to new_item_path do %>
+    <%=image_tag 'camera.png' , size: '185x50' ,class: "purchase-btn-icon" %>
+  <% end %>
 </div>
 <%= render "shared/footer" %>
