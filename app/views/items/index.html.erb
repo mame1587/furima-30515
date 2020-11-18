@@ -132,7 +132,7 @@
         <div class='item-img-content'>
           <%= image_tag item.image.variant(resize: '100x100'), class: "item-img"  %>
           <%# 商品が売れていればsold outを表示しましょう %>
-      <% if @item %>
+      <% if @item.present? %>
           <div class='sold-out'>
             <span>Sold Out!!</span>
           </div>
@@ -155,7 +155,7 @@
       <% end %>
       </li>
 
-      <%# 商品がない場合のダミー %>
+      <% if @items.length %>
       <%# 商品がある場合は表示されないようにしましょう %>
       <li class='list'>
      <%= link_to '#' do %>
@@ -175,6 +175,7 @@
         </div>
      <% end %>
       </li>
+      <% end %>
       <%# //商品がある場合は表示されないようにしましょう %>
       <%# /商品がない場合のダミー %>
     <% end %>

@@ -2,11 +2,11 @@ class ItemsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
 
   def index
-    @items = Item.all
+    @items = Item.all.order("id DESC")
   end
 
   def new
-   @item = Item.new
+   @items = Item.new
   end
 
   # def show
@@ -22,8 +22,9 @@ class ItemsController < ApplicationController
     end
   end
 
-  # def edit
-  # end
+  def edit
+
+  end
   
   # def update
   #   if current_user.update(item_params)
