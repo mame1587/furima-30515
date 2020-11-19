@@ -1,4 +1,4 @@
-# class OrdersController < ApplicationController
+class OrdersController < ApplicationController
 
 #   def index
 #     @item = Item.new
@@ -10,4 +10,4 @@
 #   def order_params
 #     params.require(:order).permit(:image).merge(user_id: current_user.id)
 #   end
-# end
+end
