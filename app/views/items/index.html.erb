@@ -141,10 +141,10 @@
         </div>
         <div class='item-info'>
           <h3 class='item-name'>
-            <%= @item.where(:name) %>
+            <%= @item.name %>
           </h3>
           <div class='item-price'>
-            <span><%= @item.where(:price) %>円<br><%= @item.where(:postage_payer_id) %></span>
+            <span><%= @item.price %>円<br><%= @item.postage_payer_id %></span>
             <div class='star-btn'>
               <%= image_tag "star.png", class:"star-icon" %>
               <span class='star-count'>0</span>
