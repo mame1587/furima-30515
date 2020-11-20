@@ -4,6 +4,10 @@ belongs_to :category
 has_one :orders
 belongs_to :user
 has_one_attached :image
+belongs_to :condition
+belongs_to :prefecture
+belongs_to :postage_payer
+belongs_to :handling
 
 def was_attached?
   self.image.attached?
