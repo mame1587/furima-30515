@@ -13,7 +13,6 @@ def was_attached?
   self.image.attached?
 end
 
-
     validates :name, presence: true
     validates :description, presence: true
    with_options numericality: {other_than:1} do
