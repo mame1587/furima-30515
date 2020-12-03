@@ -1,11 +1,12 @@
 class UserOrder
   include ActiveModel::Model
-  attr_accessor :item_id, :user_id, :post_code, :building_name, :phone_number, :house_number, :city, :prefectures_id
+  attr_accessor :item_id, :user_id, :post_code, :building_name, :phone_number, :house_number, :city, :prefectures_id, :token
 
     with_options presence: true do
         # 「order」のテーブルバリデーション
         validates :item_id
         validates :user_id
+        validates :token
         # 「addresses」のテーブルバリデーション
         validates :post_code, format:{with: /\A[0-9]{3}-[0-9]{4}\z/, message: "is invalid. Include hyphen(-)"}
         validates :building_name
