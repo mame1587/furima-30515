@@ -30,6 +30,10 @@ RSpec.describe UserOrder, type: :model do
       @order.phone_number = ""
       @order.valid?
       end
+      it "tokenが必須であること" do
+      @order.token = ""
+      @order.valid?
+      end
      end
      context "必須項目が入力されていないとき" do
       it "郵便番号が空では保存できないこと" do
@@ -56,6 +60,11 @@ RSpec.describe UserOrder, type: :model do
       @order.phone_number = "09012345678"
       @order.valid?
       expect(@order.errors[:phone_number]).to include()
+      end
+      it "tokenが空では登録できないこと" do
+      @order.token = nil
+      @order.valid?
+      expect(@order.errors[:token]).to include("can't be blank")
       end
      end
     end
