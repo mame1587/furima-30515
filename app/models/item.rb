@@ -1,7 +1,7 @@
 class Item < ApplicationRecord
 extend ActiveHash::Associations::ActiveRecordExtensions
 belongs_to :category
-has_one :orders
+has_one :order
 belongs_to :user
 has_one_attached :image
 belongs_to :condition
@@ -12,7 +12,6 @@ belongs_to :handling
 def was_attached?
   self.image.attached?
 end
-
 
     validates :name, presence: true
     validates :description, presence: true
